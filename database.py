@@ -18,6 +18,9 @@ DB_PASS = os.getenv("DB_PASS")
 def salvar_no_postgres(dados: Vendas):
     """
     Função para salvar no postgres
+
+    Args:
+        dados (Vendas): Dados da venda
     """
     try:
         conn = psycopg2.connect(

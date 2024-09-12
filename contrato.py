@@ -13,6 +13,16 @@ class ProdutoEnum(str, Enum):
 
 
 class Vendas(BaseModel):
+    """
+    Modelo de dados para vendas
+
+    Args:
+        email (EmailStr): Email do cliente
+        data (datetime): Data da venda
+        valor (PositiveFloat): Valor da venda
+        quantidade (PositiveInt): Quantidade de produtos vendidos
+        produto (ProdutoEnum): Produto vendido
+    """
     email: EmailStr
     data: datetime
     valor: PositiveFloat
