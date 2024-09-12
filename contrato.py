@@ -23,7 +23,7 @@ class Vendas(BaseModel):
     def validate_produto(cls, v):
         if v not in ProdutoEnum:
             raise ValueError(f"Produto inválido: {v}")
-        return v
+        return v    
 
     class Config:
         validate_assignment = True
