@@ -10,8 +10,6 @@ class ProdutoEnum(str, Enum):
     BOLSA = "Bolsa"
     RELOGIO = "Relógio"
 
-
-
 class Vendas(BaseModel):
     """
     Modelo de dados para vendas

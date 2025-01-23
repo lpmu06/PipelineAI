@@ -23,12 +23,16 @@ def salvar_no_postgres(dados: Vendas):
         dados (Vendas): Dados da venda
     """
     try:
-        conn = psycopg2.connect(
-            host=DB_HOST,
-            database=DB_NAME,
-            user=DB_USER,
-            password=DB_PASS
+        # Construct connection string
+        conn_string = (
+            f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:5432/{DB_NAME}"
+            "?sslmode=require"
         )
+        
+        # Print connection details (remove in production)
+        st.write(f"Tentando conectar a: {DB_HOST}")
+        
+        conn = psycopg2.connect(conn_string)
         cursor = conn.cursor()
         
         # Inserção dos dados na tabela de vendas
@@ -47,4 +51,9 @@ def salvar_no_postgres(dados: Vendas):
         conn.close()
         st.success("Dados salvos com sucesso no banco de dados!")
     except Exception as e:
-        st.error(f"Erro ao salvar no banco de dados: {e}")
+        st.error(f"Erro ao salvar no banco de dados: {str(e)}")
+        # Print more detailed error info (remove in production)
+        st.error(f"Detalhes da conexão:")
+        st.error(f"Host: {DB_HOST}")
+        st.error(f"Database: {DB_NAME}")
+        st.error(f"User: {DB_USER}")
